@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İletişim – MotoWorld</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* İletişim Sayfasına Özel CSS Düzenlemeleri */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .contact-info {
+      color: var(--light, #ffffff);
+    }
+    .contact-info h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--light, #ffffff);
+    }
+    .c-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      align-items: flex-start;
+    }
+    .c-icon {
+      font-size: 1.8rem;
+      min-width: 45px;
+    }
+    .c-item strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: .2rem;
+      color: var(--light, #ffffff);
+    }
+    .c-item p {
+      color: var(--gray, #a0aec0);
+      font-size: .9rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--card-bg, #1a202c);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: .6rem 1.1rem;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--light, #ffffff);
+      transition: border-color .3s, background .3s;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      border-color: var(--primary, #e63946);
+      background: rgba(230,57,70,.1);
+    }
+    .form-box {
+      background: var(--card-bg, #1a202c);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,.07);
+      color: var(--light, #ffffff);
+    }
+    .form-box h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray, #a0aec0);
+      margin-bottom: .45rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--dark, #0d1117);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 12px 15px;
+      color: var(--light, #ffffff);
+      font-size: .93rem;
+      transition: border-color .3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary, #e63946);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .submit-btn {
+      background: var(--primary, #e63946);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background .3s;
+    }
+    .submit-btn:hover {
+      background: #cc323f;
+    }
+    .success-msg {
+      display: none;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.35);
+      color: #4ade80;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--gray, #a0aec0);
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    @media(max-width:700px){
+      .contact-wrap { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Moto<span>World</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="history.html">Tarihçe</a></li>
+      <li><a href="types.html">Türler</a></li>
+      <li><a href="engines.html">Motorlar</a></li>
+      <li><a href="brands.html">Markalar</a></li>
+      <li><a href="gallery.html">Galeri</a></li>
+      <li><a href="contact.html" class="active">İletişim</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero" style="text-align: center; padding: 60px 20px; color: #fff;">
+    <span class="badge" style="background: rgba(230,57,70,.1); padding: 5px 15px; border-radius: 20px; color: #e63946;">📬 Bize Ulaşın</span>
+    <h1 style="font-size: 2.5rem; margin-top: 15px;">İletişim <span>Formu</span></h1>
+    <p style="color: #a0aec0; margin-top: 10px;">Sorularınız, önerileriniz veya katkılarınız için bize yazın.</p>
+  </div>
+
+  <section>
+    <div class="contact-wrap">
+
+      <div class="contact-info">
+        <h3>İletişim Bilgileri</h3>
+        <p style="color: #a0aec0; margin-bottom: 2rem;">Aşağıdaki kanallar üzerinden benimle doğrudan iletişime geçebilir ya da yandaki formu doldurabilirsiniz.</p>
+
+        <div class="c-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <strong>Konum</strong>
+            <p>Ankara, Türkiye</p>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-icon">✉️</div>
+          <div>
+            <strong>E-Posta</strong>
+            <p>destek@motoworld.com</p> </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://github.com" target="_blank" class="social-btn">🔗 GitHub</a>
+          <a href="https://linkedin.com" target="_blank" class="social-btn">💼 LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <h3>Mesaj Gönder</h3>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Adınız Soyadınız</label>
+              <input type="text" id="name" required placeholder="John Doe"/>
+            </div>
+            <div class="form-group">
+              <label for="email">E-Posta Adresiniz</label>
+              <input type="email" id="email" required placeholder="example@mail.com"/>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Konu</label>
+            <input type="text" id="subject" required placeholder="Hangi konu hakkında?"/>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mesajınız</label>
+            <textarea id="message" required placeholder="Mesajınızı buraya yazın..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Gönder</button>
+          <div id="successMessage" class="success-msg">Mesajınız başarıyla gönderildi! En kısa sürede dönüş sağlanacaktır.</div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 MotoWorld. Tüm Hakları Saklıdır.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault(); // Sayfanın yenilenmesini engeller
+      document.getElementById('successMessage').style.display = 'block'; // Başarı mesajını açar
+      document.getElementById('contactForm').reset(); // Formu temizler
+    }
+  </script>
+
+</body>
+</html>

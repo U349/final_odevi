@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri – MotoWorld</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gal-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.07);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .gal-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+    }
+    .gal-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .gal-img-wrap img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform .4s;
+      display: block;
+    }
+    .gal-card:hover .gal-img-wrap img {
+      transform: scale(1.07);
+    }
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(230,57,70,0);
+      transition: background .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gal-card:hover .gal-overlay {
+      background: rgba(230,57,70,.3);
+    }
+    .gal-overlay span {
+      font-size: 2.5rem;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .gal-card:hover .gal-overlay span {
+      opacity: 1;
+    }
+    .gal-body {
+      padding: 1.2rem 1.4rem;
+    }
+    .gal-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .gal-body p {
+      color: var(--gray);
+      font-size: .85rem;
+      margin-bottom: .8rem;
+    }
+    .gal-meta {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+    .gal-meta span {
+      background: rgba(230,57,70,.13);
+      color: var(--primary);
+      font-size: .73rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* LİGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 75vh;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+    .lightbox-title {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .lightbox-close:hover { color: var(--primary); }
+
+    /* FİLTRE */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: 8px 22px;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,.15);
+      background: transparent;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    .gal-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Moto<span>World</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="history.html">Tarihçe</a></li>
+    <li><a href="types.html">Türler</a></li>
+    <li><a href="engines.html">Motorlar</a></li>
+    <li><a href="brands.html">Markalar</a></li>
+    <li><a href="gallery.html" class="active">Galeri</a></li>
+    <li><a href="contact.html">İletişim</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <span class="badge">📸 Görsel Dünya</span>
+  <h1>Motorsiklet <span>Galerisi</span></h1>
+  <p>Dünyanın en ikonik motorsikletlerinden özenle seçilmiş fotoğraflar ve bilgiler.</p>
+</div>
+
+<section>
+  <!-- FİLTRE BUTONLARI -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">Tümü</button>
+    <button class="filter-btn" data-filter="spor">Spor</button>
+    <button class="filter-btn" data-filter="cruiser">Cruiser</button>
+    <button class="filter-btn" data-filter="adventure">Adventure</button>
+    <button class="filter-btn" data-filter="naked">Naked</button>
+    <button class="filter-btn" data-filter="klasik">Klasik</button>
+  </div>
+
+  <div class="gallery-grid">
+
+    <!-- SPOR -->
+    <div class="gal-card" data-category="spor">
+      <div class="gal-img-wrap">
+        <img src="images/galeri1.jpg" alt="Ducati Panigale V4"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Ducati Panigale V4</h3>
+        <p>MotoGP teknolojisinden ilham alan 214 hp'lik canavar. Ducati'nin en prestijli yol modeli.</p>
+        <div class="gal-meta">
+          <span>Spor</span><span>Ducati</span><span>214 hp</span><span>2018 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="spor">
+      <div class="gal-img-wrap">
+        <img src="images/galeri2.jpg" alt="Honda CBR1000RR Fireblade"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Honda CBR1000RR Fireblade</h3>
+        <p>1992'den beri süperspor segmentinin referans noktası. 217 hp ve mükemmel denge bir arada.</p>
+        <div class="gal-meta">
+          <span>Spor</span><span>Honda</span><span>217 hp</span><span>1992 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="spor">
+      <div class="gal-img-wrap">
+        <img src="images/galeri3.jpg" alt="Yamaha YZF-R1"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Yamaha YZF-R1</h3>
+        <p>Çapraz düzlemli 4 silindirli motor ve MotoGP sesiyle Yamaha'nın pist canavarı.</p>
+        <div class="gal-meta">
+          <span>Spor</span><span>Yamaha</span><span>200 hp</span><span>1998 →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRUİSER -->
+    <div class="gal-card" data-category="cruiser">
+      <div class="gal-img-wrap">
+        <img src="images/galeri4.jpg" alt="Harley-Davidson Fat Boy"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Harley-Davidson Fat Boy</h3>
+        <p>Terminator 2'den tanınan ikonik silüet. Masif gövdesi ve derin V-Twin sesiyle Amerikan ruhunun simgesi.</p>
+        <div class="gal-meta">
+          <span>Cruiser</span><span>Harley-Davidson</span><span>93 hp</span><span>1990 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="cruiser">
+      <div class="gal-img-wrap">
+        <img src="images/galeri5.jpg" alt="Indian Chief"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Indian Chief</h3>
+        <p>1922'den bu yana üretilen Amerikan efsanesi. Klasik tasarımı ve modern teknolojisiyle rakipsiz.</p>
+        <div class="gal-meta">
+          <span>Cruiser</span><span>Indian</span><span>78 hp</span><span>1922 →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADVENTURE -->
+    <div class="gal-card" data-category="adventure">
+      <div class="gal-img-wrap">
+        <img src="images/galeri6.jpg" alt="BMW R 1250 GS"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>BMW R 1250 GS Adventure</h3>
+        <p>Dünyanın en çok satan adventure motorsikleti. Her arazide, her koşulda güvenilir eşlik.</p>
+        <div class="gal-meta">
+          <span>Adventure</span><span>BMW</span><span>136 hp</span><span>2019 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="adventure">
+      <div class="gal-img-wrap">
+        <img src="images/galeri7.jpg" alt="Honda Africa Twin"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Honda Africa Twin</h3>
+        <p>1988'den bu yana dünyayı turlayanların vazgeçilmezi. Güvenilirliği ve sağlamlığıyla efsaneleşti.</p>
+        <div class="gal-meta">
+          <span>Adventure</span><span>Honda</span><span>102 hp</span><span>1988 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="adventure">
+      <div class="gal-img-wrap">
+        <img src="images/galeri8.jpg" alt="KTM 1290 Super Adventure"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>KTM 1290 Super Adventure</h3>
+        <p>Ready to Race felsefesiyle üretilmiş. 160 hp ve semi-aktif süspansiyonla arazi sınırlarını zorlar.</p>
+        <div class="gal-meta">
+          <span>Adventure</span><span>KTM</span><span>160 hp</span><span>2014 →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAKED -->
+    <div class="gal-card" data-category="naked">
+      <div class="gal-img-wrap">
+        <img src="images/galeri9.jpg" alt="Ducati Monster"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Ducati Monster</h3>
+        <p>1993'te naked kategorisini tek başına yaratan model. Minimal tasarım, maksimum karakter.</p>
+        <div class="gal-meta">
+          <span>Naked</span><span>Ducati</span><span>111 hp</span><span>1993 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="naked">
+      <div class="gal-img-wrap">
+        <img src="images/galeri10.jpg" alt="Yamaha MT-09"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Yamaha MT-09</h3>
+        <p>3 silindirli 890cc motoru ile benzersiz güç karakteri. "Dark Side of Japan" sloganının yıldızı.</p>
+        <div class="gal-meta">
+          <span>Naked</span><span>Yamaha</span><span>119 hp</span><span>2013 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="naked">
+      <div class="gal-img-wrap">
+        <img src="images/galeri11.jpg" alt="KTM 890 Duke"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>KTM 890 Duke</h3>
+        <p>"The Scalpel" lakaplı Duke, keskin ve hassas sürüş dinamikleriyle naked kategorisinin en eğlenceli modeli.</p>
+        <div class="gal-meta">
+          <span>Naked</span><span>KTM</span><span>121 hp</span><span>2021 →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KLASİK -->
+    <div class="gal-card" data-category="klasik">
+      <div class="gal-img-wrap">
+        <img src="images/galeri12.jpg" alt="BMW R nineT"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>BMW R nineT</h3>
+        <p>BMW'nin 90. yıl dönümü için üretilen neo-retro başyapıt. Boxer motorun klasik sesi, modern güvenliği.</p>
+        <div class="gal-meta">
+          <span>Klasik</span><span>BMW</span><span>109 hp</span><span>2013 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="klasik">
+      <div class="gal-img-wrap">
+        <img src="images/galeri13.jpg" alt="Triumph Bonneville"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Triumph Bonneville T120</h3>
+        <p>1959'dan bu yana üretilen İngiliz efsanesi. Steve McQueen'in tercihi, klasik tasarımın zirvesi.</p>
+        <div class="gal-meta">
+          <span>Klasik</span><span>Triumph</span><span>80 hp</span><span>1959 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-card" data-category="klasik">
+      <div class="gal-img-wrap">
+        <img src="images/galeri14.jpg" alt="Honda CB1100"/>
+        <div class="gal-overlay"><span>🔍</span></div>
+      </div>
+      <div class="gal-body">
+        <h3>Honda CB1100</h3>
+        <p>1969'daki efsane CB750'nin modern yorumu. Nostaljik tasarım ve güvenilir Honda kalitesi bir arada.</p>
+        <div class="gal-meta">
+          <span>Klasik</span><span>Honda</span><span>88 hp</span><span>2010 →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LİGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <img src="" alt="" id="lightboxImg"/>
+  <p class="lightbox-title" id="lightboxTitle"></p>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Moto<span>World</span></a>
+      <p>Motorsiklet tutkunları için kapsamlı bilgi kaynağı.</p>
+    </div>
+    <div class="footer-col"><h4>Sayfalar</h4><ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="history.html">Tarihçe</a></li>
+      <li><a href="types.html">Türler</a></li>
+      <li><a href="engines.html">Motorlar</a></li>
+      <li><a href="brands.html">Markalar</a></li>
+      <li><a href="gallery.html">Galeri</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Kategoriler</h4><ul>
+      <li><a href="gallery.html">Spor</a></li>
+      <li><a href="gallery.html">Cruiser</a></li>
+      <li><a href="gallery.html">Adventure</a></li>
+      <li><a href="gallery.html">Naked</a></li>
+      <li><a href="gallery.html">Klasik</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>İletişim</h4><ul>
+      <li><a href="contact.html">Bize Ulaşın</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 MotoWorld — Eğitim amaçlı hazırlanmıştır.</p></div>
+</footer>
+
+<script>
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Filtre
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galCards = document.querySelectorAll('.gal-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      galCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+
+  document.querySelectorAll('.gal-img-wrap').forEach(wrap => {
+    wrap.addEventListener('click', () => {
+      const img = wrap.querySelector('img');
+      const title = wrap.closest('.gal-card').querySelector('h3').textContent;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxTitle.textContent = title;
+      lightbox.classList.add('open');
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.classList.remove('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Türler – MotoWorld</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .type-hero {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      display: block;
+    }
+    .type-section {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+    }
+    .type-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+    .type-section h2 span { color: var(--primary); }
+    .type-section .type-desc {
+      color: var(--gray);
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+    .type-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: .8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .specs-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .spec-pill {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: .6rem 1.2rem;
+      font-size: .88rem;
+    }
+    .spec-pill strong {
+      color: var(--primary);
+      display: block;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: .2rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Moto<span>World</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Ana Sayfa</a></li>
+    <li><a href="history.html">Tarihçe</a></li>
+    <li><a href="types.html" class="active">Türler</a></li>
+    <li><a href="engines.html">Motorlar</a></li>
+    <li><a href="brands.html">Markalar</a></li>
+    <li><a href="gallery.html">Galeri</a></li>
+    <li><a href="contact.html">İletişim</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <span class="badge">🏍️ Kategori Rehberi</span>
+  <h1>Motorsiklet <span>Türleri</span></h1>
+  <p>Her sürüş stiline uygun farklı bir kategori. Hangisi senin için?</p>
+</div>
+
+<section style="padding-top:4rem;">
+
+  <!-- SÜPER SPOR -->
+  <div class="type-section">
+    <span class="type-badge">Spor</span>
+    <h2>Süper <span>Spor</span></h2>
+    <p class="type-desc">Pist performansı esas alınarak tasarlanmış ve yola uyarlanmış motorsikletlerdir. Tam yatar pozisyon, yüksek devirli motorlar ve gelişmiş aerodinamik bu sınıfın temel özellikleridir.</p>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>Hız</strong>250–300+ km/s</div>
+      <div class="spec-pill"><strong>Motor</strong>600cc – 1200cc</div>
+      <div class="spec-pill"><strong>Ağırlık</strong>160–200 kg</div>
+      <div class="spec-pill"><strong>Kullanım</strong>Pist / Spor Yol</div>
+    </div>
+    <img src="images/spor.jpg" alt="Süper Spor Motorsiklet" class="type-hero"/>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/spor2.jpg" alt="Honda CBR1000RR"/>
+        <div class="card-body">
+          <span class="card-tag">Honda</span>
+          <h3>Honda CBR1000RR Fireblade</h3>
+          <p>1992'den beri üretilen efsane. 217 beygir gücü ve mükemmel denge ile spor sınıfının referans noktasıdır.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/spor3.jpg" alt="Yamaha R1"/>
+        <div class="card-body">
+          <span class="card-tag">Yamaha</span>
+          <h3>Yamaha YZF-R1</h3>
+          <p>Çapraz düzlemli 4 silindirli motoru ile MotoGP sesini ve hissini kamuya sunan Yamaha'nın amiral gemisi.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/spor4.jpg" alt="Kawasaki ZX-10R"/>
+        <div class="card-body">
+          <span class="card-tag">Kawasaki</span>
+          <h3>Kawasaki Ninja ZX-10R</h3>
+          <p>Superbike şampiyonasının favorisi. Güçlü 1000cc motoru ve elektronik paketi ile pistlere hükmeder.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRUİSER -->
+  <div class="type-section" style="background:var(--dark2);padding:3rem;border-radius:20px;">
+    <span class="type-badge">Klasik</span>
+    <h2>Cruiser <span>Motorsikletler</span></h2>
+    <p class="type-desc">Düşük oturma pozisyonu, geri çekili ayak pedalları ve geniş gidon ile konforlu uzun yol sürüşü için tasarlanmıştır. Amerikan kültüründen doğan bu tür özgürlük ve bireyselliğin simgesidir.</p>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>Hız</strong>160–200 km/s</div>
+      <div class="spec-pill"><strong>Motor</strong>750cc – 1900cc</div>
+      <div class="spec-pill"><strong>Ağırlık</strong>250–380 kg</div>
+      <div class="spec-pill"><strong>Kullanım</strong>Şehir / Uzun Yol</div>
+    </div>
+    <img src="images/cruiser.jpg" alt="Cruiser Motorsiklet" class="type-hero"/>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/cruiser2.jpg" alt="Harley Fat Boy"/>
+        <div class="card-body">
+          <span class="card-tag">Harley-Davidson</span>
+          <h3>H-D Fat Boy</h3>
+          <p>Terminator 2'den tanınan ikonik model. Masif gövdesi ve derin V-Twin sesiyle Amerikan ruhunun simgesi.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/cruiser3.jpg" alt="Yamaha V-Max"/>
+        <div class="card-body">
+          <span class="card-tag">Yamaha</span>
+          <h3>Yamaha V-Max</h3>
+          <p>1679cc V4 motoru ile 200 beygir gücü. Muscle bike kategorisinin tartışmasız efsanesi.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/cruiser4.jpg" alt="Indian Chief"/>
+        <div class="card-body">
+          <span class="card-tag">Indian</span>
+          <h3>Indian Chief</h3>
+          <p>1922'den beri üretilen Amerikan efsanesi. Klasik tasarım ve modern teknolojiyi bir arada sunar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADVENTURE -->
+  <div class="type-section">
+    <span class="type-badge">Offroad</span>
+    <h2>Adventure & <span>Enduro</span></h2>
+    <p class="type-desc">Hem asfalt hem arazide performans sunar. Uzun mesafe, yüksek rüzgar koruyucu, büyük yakıt deposu ve arazi kapasitesiyle "her yere git" anlayışını temsil eder.</p>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>Hız</strong>180–230 km/s</div>
+      <div class="spec-pill"><strong>Motor</strong>650cc – 1300cc</div>
+      <div class="spec-pill"><strong>Ağırlık</strong>200–260 kg</div>
+      <div class="spec-pill"><strong>Kullanım</strong>Arazi / Uzun Yol</div>
+    </div>
+    <img src="images/adventure.jpg" alt="Adventure Motorsiklet" class="type-hero"/>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/adventure2.jpg" alt="BMW GS"/>
+        <div class="card-body">
+          <span class="card-tag">BMW</span>
+          <h3>BMW R 1250 GS Adventure</h3>
+          <p>Dünyanın en çok satan adventure motorsikleti. 136 hp, dinamik süspansiyon ve 30 litre depo.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/adventure3.jpg" alt="KTM 1290"/>
+        <div class="card-body">
+          <span class="card-tag">KTM</span>
+          <h3>KTM 1290 Super Adventure</h3>
+          <p>160 hp ve semi-aktif süspansiyonla hem arazi hem asfaltta üstün performans sunar.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/adventure4.jpg" alt="Honda Africa Twin"/>
+        <div class="card-body">
+          <span class="card-tag">Honda</span>
+          <h3>Honda Africa Twin</h3>
+          <p>1988'den bu yana dünyayı turlayanların vazgeçilmezi. Güvenilirliği ile efsaneleşti.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAKED -->
+  <div class="type-section" style="background:var(--dark2);padding:3rem;border-radius:20px;">
+    <span class="type-badge">Naked</span>
+    <h2>Naked & <span>Streetfighter</span></h2>
+    <p class="type-desc">Fairing'siz yapılarıyla hem agresif görünümlü hem de pratik olan naked motorsikletler şehir içi sürüş için idealdir. Dik oturma pozisyonu ve manevra kabiliyetiyle öne çıkar.</p>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>Hız</strong>200–280 km/s</div>
+      <div class="spec-pill"><strong>Motor</strong>400cc – 1300cc</div>
+      <div class="spec-pill"><strong>Ağırlık</strong>170–210 kg</div>
+      <div class="spec-pill"><strong>Kullanım</strong>Şehir / Günlük</div>
+    </div>
+    <img src="images/naked.jpg" alt="Naked Motorsiklet" class="type-hero"/>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/naked2.jpg" alt="Ducati Monster"/>
+        <div class="card-body">
+          <span class="card-tag">Ducati</span>
+          <h3>Ducati Monster</h3>
+          <p>1993'te naked kategorisini tek başına yaratan model. Minimal tasarım, maksimum karakter.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/naked3.jpg" alt="KTM Duke"/>
+        <div class="card-body">
+          <span class="card-tag">KTM</span>
+          <h3>KTM 890 Duke</h3>
+          <p>"The Scalpel" lakaplı Duke, keskin ve hassas sürüş dinamikleriyle naked kategorisinin en eğlenceli modeli.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/naked4.jpg" alt="Yamaha MT-09"/>
+        <div class="card-body">
+          <span class="card-tag">Yamaha</span>
+          <h3>Yamaha MT-09</h3>
+          <p>3 silindirli 890cc motoru ile benzersiz güç karakteri. Dark Side of Japan sloganının yıldızı.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOURING -->
+  <div class="type-section">
+    <span class="type-badge">Yol Turu</span>
+    <h2>Touring <span>Motorsikletler</span></h2>
+    <p class="type-desc">Uzun yol yolculukları için tasarlanmış touring motorsikletler; büyük bagaj kapasitesi, rüzgar kalkanı ve konfor özellikleriyle öne çıkar.</p>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>Hız</strong>200–240 km/s</div>
+      <div class="spec-pill"><strong>Motor</strong>1000cc – 1800cc</div>
+      <div class="spec-pill"><strong>Ağırlık</strong>300–400 kg</div>
+      <div class="spec-pill"><strong>Kullanım</strong>Uzun Yol / Konfor</div>
+    </div>
+    <img src="images/touring.jpg" alt="Touring Motorsiklet" class="type-hero"/>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="images/touring2.jpg" alt="Honda Gold Wing"/>
+        <div class="card-body">
+          <span class="card-tag">Honda</span>
+          <h3>Honda Gold Wing</h3>
+          <p>1975'ten beri üretilen Gold Wing, touring kategorisinin efsanesi. 1800cc 6 silindirli motoru ile yol üstü lüksü sunar.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/touring3.jpg" alt="Harley Road Glide"/>
+        <div class="card-body">
+          <span class="card-tag">Harley-Davidson</span>
+          <h3>H-D Road Glide</h3>
+          <p>Çerçeveye monte edilmiş farı ve bagaj sistemiyle uzun yolların partneri.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/touring4.jpg" alt="BMW K1600"/>
+        <div class="card-body">
+          <span class="card-tag">BMW</span>
+          <h3>BMW K 1600 GTL</h3>
+          <p>6 silindirli motor ve aktif rüzgar kalkanıyla BMW'nin en konforlu touring modeli.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Moto<span>World</span></a>
+      <p>Motorsiklet tutkunları için kapsamlı bilgi kaynağı.</p>
+    </div>
+    <div class="footer-col"><h4>Sayfalar</h4><ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="history.html">Tarihçe</a></li>
+      <li><a href="types.html">Türler</a></li>
+      <li><a href="engines.html">Motorlar</a></li>
+      <li><a href="brands.html">Markalar</a></li>
+      <li><a href="gallery.html">Galeri</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Kategoriler</h4><ul>
+      <li><a href="types.html">Süper Spor</a></li>
+      <li><a href="types.html">Cruiser</a></li>
+      <li><a href="types.html">Adventure</a></li>
+      <li><a href="types.html">Naked</a></li>
+      <li><a href="types.html">Touring</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>İletişim</h4><ul>
+      <li><a href="contact.html">Bize Ulaşın</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 MotoWorld — Eğitim amaçlı hazırlanmıştır.</p></div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
